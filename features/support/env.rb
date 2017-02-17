@@ -4,11 +4,14 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-require 'selenium-webdriver'
-require 'cucumber/rails'
+require 'capybara'
 require 'capybara/cucumber'
-#Capybara.default_driver = :selenium
-
+require 'cucumber/rails'
+require 'selenium-webdriver'
+Capybara.default_driver = :selenium
+Capybara.register_driver :selenium do |app| 
+   Capybara::Selenium::Driver.new(app, :browser => :chrome) 
+end
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
